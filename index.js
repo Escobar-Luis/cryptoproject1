@@ -19,7 +19,9 @@
 // const characterFormImage = document.getElementById('image-url')
 // const characterFormButton= document.getElementById('addCharacter-btn')
 
+// Get coin data
 var baseUrl = "https://api.coinranking.com/v2/coins";
+// Bypass CORS error
 var proxyUrl = "https://cors-anywhere.herokuapp.com/";
 var apiKey = "coinranking9c9af1221d4e2fb94b5a56bb20dadd4e419243995005e8d9";
 
@@ -30,33 +32,40 @@ fetch(`${proxyUrl}${baseUrl}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
+      //from documentation to access data
       'X-My-Custom-Header': `${apiKey}`,
+      //to prevent cors error
       'Access-Control-Allow-Origin': "*"
     }
 })
   .then((response) => {
+      //if statement to catch error 
     if (response.ok) {
+
       response.json().then((json) => {
         console.log(json.data);
+        // access the coin data using its endpoint
         let coinsData = json.data.coins;
-
-        if (coinsData.length > 0) {
+        console.log(coinsData)
+        // create the cryptoCoin variable to hold api data
+        while (coinsData.length > 0) {
+            //this is why the variable is empty
           var cryptoCoin = "";
         }
         //For Loop Starts
         coinsData.forEach((coin) => {
-          cryptoCoin += "<tr>";
-          cryptoCoin += `<td> ${coin.uuid} </td>`;
-          cryptoCoin += `<td> ${coin.btcPrice} </td>`;
-          cryptoCoin += `<td> ${coin.rank}</td>`;
-          cryptoCoin += `<td> ${coin.tier} </td>`;
+            cryptoCoin += "<tr>";
+            cryptoCoin += `<td> ${coin.rank}</td>`;
+            cryptoCoin += `<td> ${coin.symbol}</td>`;
           cryptoCoin += `<td> ${coin.name}</td>`;
-          cryptoCoin += `<td> $${Math.round(coin.price)} Billion</td>`;
-          cryptoCoin += `<td> ${coin.symbol}</td>`;"<tr>";
+          cryptoCoin += `<td> ${coin.price} </td>`;
         });
         //For Loop Ends
         document.getElementById("data").innerHTML = cryptoCoin;
-      });
+      })
+      
+      ;
+
     }
   })
   .catch((error) => {
