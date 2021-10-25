@@ -19,15 +19,49 @@
 // const characterFormImage = document.getElementById('image-url')
 // const characterFormButton= document.getElementById('addCharacter-btn')
 
-let apikey = {
-    key: 'Key:kfNnCPa9ebAV5hlsFzqOSXKpL6y6xIsvDr9'
-}
+var baseUrl = "https://api.coinranking.com/v2/coins";
+var proxyUrl = "https://cors-anywhere.herokuapp.com/";
+var apiKey = "coinranking9c9af1221d4e2fb94b5a56bb20dadd4e419243995005e8d9";
 
-fetch ('https://api.cryptonator.com/api/ticker/btc-usd')
-.then(response => console.log(response.json()))
-.then(data => {
-    console.log(data)
+var apiUrl = `${proxyUrl}${baseUrl}`;
+console.log(apiUrl);
+
+fetch(`${proxyUrl}${baseUrl}`, { 
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-My-Custom-Header': `${apiKey}`,
+      'Access-Control-Allow-Origin': "*"
+    }
 })
+  .then((response) => {
+    if (response.ok) {
+      response.json().then((json) => {
+        console.log(json.data);
+        let coinsData = json.data.coins;
+
+        if (coinsData.length > 0) {
+          var cryptoCoin = "";
+        }
+        //For Loop Starts
+        coinsData.forEach((coin) => {
+          cryptoCoin += "<tr>";
+          cryptoCoin += `<td> ${coin.uuid} </td>`;
+          cryptoCoin += `<td> ${coin.btcPrice} </td>`;
+          cryptoCoin += `<td> ${coin.rank}</td>`;
+          cryptoCoin += `<td> ${coin.tier} </td>`;
+          cryptoCoin += `<td> ${coin.name}</td>`;
+          cryptoCoin += `<td> $${Math.round(coin.price)} Billion</td>`;
+          cryptoCoin += `<td> ${coin.symbol}</td>`;"<tr>";
+        });
+        //For Loop Ends
+        document.getElementById("data").innerHTML = cryptoCoin;
+      });
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
     // characterData.forEach(character => {
     //         const characterName = document.createElement('span')

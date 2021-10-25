@@ -1,51 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
 
-<html>
-  <head>
-    <title>Welcome to the world of Crypto</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-  <body>
-    <div class="logo">
-      <h1>Crypto</h1>
+  <title>Document</title>
+</head>
+<body>
+
+  <nav class="navbar fixed-top navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light">Krypto Dashboard</a>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
+  </nav>
 
-    <div id="stock-bar">
 
-      <!-- show characters names here -->
-    </div>
+  <table class="table table-bordered" style="margin-top: 90px" >
+    <thead>
+      <tr>
+        <th scope="col">UUID</th>
+        <th scope="col">Btc Price</th>
+        <th scope="col">Rank</th>
+        <th scope="col">Tier</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Symbol</th>
 
-    <div class="characterInfo">
-      <div id="detailed-info">
-        <p id="name">Character's Name</p>
-        <img
-          id="image"
-          src=""
-          alt="Character's Name"
-        /><!-- display character image here -->
-        <h4 id='votesHead'>Total Votes: <span id="vote-count">Character's Votes</span></h4>
-        <form id="votes-form">
-          <input type="text" placeholder="Enter Votes" id="votes" name="votes" />
-          <input type="submit" id= 'add-btn' value="Add Votes" />
-        </form>
-        <button id="reset-btn">Reset Votes</button>
-      </div>
-
-      Bonus only! Uncomment the elements below when you are ready to work on the bonus deliverables
-      
-        <h4>Add New Character</h4>
-        <form id="character-form">
-          <div>
-            <label for="name">Name</label>
-            <input type="text" id="name1" name="name" />
-          </div>
-          <div>
-            <label for="image-url">Image URL</label>
-            <input type="text" id="image-url" name="image-url" />
-          </div>
-          <input id='addCharacter-btn' type="submit" value="Add Character" />
-        </form> 
-    </div>
-    <script src="index.js"></script>
-  </body>
+      </tr>
+    </thead>
+    <tbody id="data">
+    </tbody>
+  </table>
+  <script src="index.js"></script>
+</body>
 </html>
