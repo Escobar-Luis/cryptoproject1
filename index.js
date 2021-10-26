@@ -26,10 +26,10 @@ fetch ('https://financialmodelingprep.com/api/v3/company/discounted-cash-flow/BA
         symbol.innerHTML = data.symbol
         //append the elements
         tableBody.appendChild(tableRow)
-        tableRow.appendChild(stockPrice)
-        tableRow.appendChild(date)
-        tableRow.appendChild(dcf)
         tableRow.appendChild(symbol)
+        tableRow.appendChild(stockPrice)
+        tableRow.appendChild(dcf)
+        tableRow.appendChild(date)
     })
         // data.forEach(key => {
         // console.log(key)
