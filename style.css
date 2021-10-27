@@ -5,7 +5,7 @@ html{
 
 body {
     width: 100%;
-    height: 100%;
+    height: 50%;
 }
 #stocks {
     display: flex;
@@ -38,6 +38,81 @@ body {
 .key-metrics {
     text-align: left;
     font-size: smaller;
-    
+
+}
+
+#container {
+    display: flex;
+    border: 3px solid black;
+    height: 10px;
+}
+#balance {
+    text-align: center;
+    width: 300px;
+    height: 200px;
+    box-sizing: border-box;
+    position: top;
+    border: 3px solid black;
+    margin-left: 10px;
+    margin-top: 0px;
+    transform-style: preserve-3d;
+    border-radius: 30px;
+    padding: 0rem 5rem;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+#cash {
+    text-align: center;
+    width: 300px;
+    height: 200px;
+    position: top;
+    box-sizing: border-box;
+    border: 3px solid black;
+    margin-left: 100px;
+    margin-top: 0px;
+    margin-left: 10px;
+    transform-style: preserve-3d;
+    border-radius: 30px;
+    padding: 0rem 5rem;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+#income {
+    text-align: center;
+    width: 300px;
+    height: 200px;
+    position: top;
+    box-sizing: border-box;
+    border: 3px solid black;
+    margin-left: 100px;
+    margin-top: 0px;
+    margin-left: 10px;
+    transform-style: preserve-3d;
+    border-radius: 30px;
+    padding: 0rem 5rem;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+
+#toadd {
+    display: flex;
+    border: 3px solid black;
+    height: 600px;
+    width: 100%;
+}
+#toadd {
+    text-align: center;
+    display: flex;
+    border: 3px solid black;
+    height: 500px;
+    width: 100%;
+}
+#btn {
+    background: #585858;
+    color: green;
+}
+#table {
+    height: fit-content;
+}
+
+.container-fluid {
+    height: 10px;
 }
 
