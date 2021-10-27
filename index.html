@@ -15,10 +15,13 @@
 
   <nav class="navbar fixed-top navbar-light bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand text-light">Krypto Dashboard</a>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Type any stock name" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Let's make this money</button>
+      <div class = 'options'>
+        <p>hello</p>
+      </div>
+      <a class="navbar-brand text-light">stock Dashboard</a>
+      <form id="stockSearch">
+        <input id="search" type="search" placeholder="Type any stock name" aria-label="Search">
+        <button id ="btn" type="submit">Let's make this money</button>
       </form>
     </div>
   </nav>
@@ -27,16 +30,31 @@
   <table class="table table-bordered" style="margin-top: 80px" >
     <thead>
       <tr>
-        <th scope="col">Symbol</th>
+        <th id='practice' scope="col">Symbol</th>
         <th scope="col">Price</th>
         <th scope="col">DCF</th>
         <th scope="col">Date</th>
       </tr>
     </thead>
     <tbody id="data">
-
+      <td class="s"></td>
     </tbody>
   </table>
+  
+  <div id='stocks'>
+    <h1></h1>
+    <h2>dfdf</h2>
+    
+    <div id='stock1'>
+      <h1>werr</h1>
+      <h2>dfdf</h2>
+    </div>
+    
+    <div id='stock2'>
+      <h1>werr</h1>
+      <h2>dfdf</h2>
+      </div>
+  </div>
   <script src="index.js"></script>
 </body>
 </html>
