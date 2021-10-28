@@ -1,19 +1,19 @@
-const balanceBtn = document.getElementById('balance')
-const cashBtn = document.getElementById('cash')
-const incomeBtn = document.getElementById('income')
 const tableBody = document.getElementById('data')
 const boxUno = document.getElementById('stock1')
 const boxDos = document.getElementById('stock2')
-
-
-const table = document.getElementById('table')
 const arr = ['AAPL', 'GOOG', 'AMZN', 'BABA', 'FB']
+
+function createTableHeading (array) {
+    
+}
 
 function returnTickerData () {
     arr.forEach((ticker) => {
         return fetch (`https://financialmodelingprep.com/api/v3/company/discounted-cash-flow/${ticker}?apikey=dfc166b85e605991cfd559cf91be0d4c`)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
+            
             //create elements
             const tableRow = document.createElement('tr')
             const stockPrice = document.createElement('td')
@@ -39,63 +39,44 @@ function returnTickerData () {
         console.log('DOM fully loaded and parsed');
         returnTickerData()
     });
-function moveOn1(emptyTableHead) {
-    let currentTableHead = emptyTableHead
-    return currentTableHead
-}
-function moveOn(){
-let currentTableHeadRow = document.createElement('tr')
-return currentTableHeadRow
-}
-
-    function clearTableHead () {
-        let currentTableHead = document.getElementById('table-head')
-        let currentTableHeadRow = document.getElementById('table-head-row')
-        moveOn1()
-        moveOn
-        currentTableHeadRow.remove()
-        const newTableRow = document.createElement('tr')
-        let emptyTableHead = currentTableHead.appendChild(newTableRow)
-        emptyTableHead.setAttribute('id', 'table-head')
-        return emptyTableHead
-    }
     
-    function getCurrentSymbolsArray () {
-        //construct new symbols
-        const symbols = [...document.getElementsByClassName('s')]
-        const newSymbols = symbols.map(function(item){
-            const y = item.textContent
-            return y
-        })
-        return newSymbols
-    }
-
-function createTableHead (url, emptyTableHead) {
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        dataAtZeroHead= data[0]
-        let inc=0
-        for (const [key] of Object.entries(dataAtZeroHead)) {
-            if (inc < 60) {
-                inc++;
-                const newTableHeadContent = document.createElement('th')
-                newTableHeadContent.textContent = key;
-                emptyTableHead.appendChild(newTableHeadContent)
-            }
-        }
-        return 
-    })
-}
+    const balanceBtn = document.getElementById('balance')
+    const cashBtn = document.getElementById('cash')
+    const incomeBtn = document.getElementById('income')
+    
     incomeBtn.addEventListener('click', () => incomeStatementTableData())
     
-    
+    const currentTableHead = document.getElementById('table-head')
+    const currentTableHeadRow = document.getElementById('table-head-row')
+    const table = document.getElementById('table')
 
     function incomeStatementTableData () {
-        createTableHead('https://financialmodelingprep.com/api/v3/income-statement/BABA?apikey=dfc166b85e605991cfd559cf91be0d4c',clearTableHead())
-        getCurrentSymbolsArray()
-        //save ticker symbols into new array so we can delete old data
-        tableBody.remove()
+        //create table elements
+        currentTableHeadRow.remove()
+        const newTableRow = document.createElement('tr')
+        const y = currentTableHead.appendChild(newTableRow)
+        //create table header info
+        fetch(`https://financialmodelingprep.com/api/v3/income-statement/BABA?apikey=dfc166b85e605991cfd559cf91be0d4c`)
+        .then(response => response.json())
+        .then(data => {
+            dataAtZeroHead= data[0]
+            let inc=0
+            for (const [key] of Object.entries(dataAtZeroHead)) {
+                if (inc < 50) {
+                    inc++;
+                    let newTableHeadContent = document.createElement('th')
+                    newTableHeadContent.innerHTML = `${key}`;
+                    y.appendChild(newTableHeadContent)
+                }
+            }})
+            //save ticker symbols into new array so we can delete old data
+            const symbols = [...document.getElementsByClassName('s')]
+            const x = symbols.map(function(item){
+                const y = item.textContent
+                return y
+                })
+            console.log(x)
+            tableBody.remove()
             const newTableBody = document.createElement('tbody')
             table.appendChild(newTableBody)
             arr.forEach(function(ticker) {
@@ -125,8 +106,31 @@ function createTableHead (url, emptyTableHead) {
 
 balanceBtn.addEventListener('click', () => balanceStatementTableData())
     function balanceStatementTableData () {
-        createTableHead('https://financialmodelingprep.com/api/v3/income-statement/BABA?apikey=dfc166b85e605991cfd559cf91be0d4c',clearTableHead())
-        getCurrentSymbolsArray()
+        //create table elements
+        currentTableHeadRow.remove()
+        const newTableRow = document.createElement('tr')
+        const y = currentTableHead.appendChild(newTableRow)
+        //create table header info
+        fetch(`https://financialmodelingprep.com/api/v3/balance-sheet-statement/AAPL?limit=120&apikey=dfc166b85e605991cfd559cf91be0d4c`)
+        .then(response => response.json())
+        .then(data => {
+            dataAtZeroHead= data[0]
+            let inc=0
+            for (const [key] of Object.entries(dataAtZeroHead)) {
+                if (inc < 50) {
+                    inc++;
+                    let newTableHeadContent = document.createElement('th')
+                    newTableHeadContent.innerHTML = `${key}`;
+                    y.appendChild(newTableHeadContent)
+                }
+            }})
+            //save ticker symbols into new array so we can delete old data
+            const symbols = [...document.getElementsByClassName('s')]
+            const x = symbols.map(function(item){
+                const y = item.textContent
+                return y
+                })
+            console.log(x)
             tableBody.remove()
             const newTableBody = document.createElement('tbody')
             table.appendChild(newTableBody)
@@ -157,8 +161,31 @@ balanceBtn.addEventListener('click', () => balanceStatementTableData())
 
 cashBtn.addEventListener('click', () => cashStatementTableData())
     function cashStatementTableData () {
-        createTableHead('https://financialmodelingprep.com/api/v3/income-statement/BABA?apikey=dfc166b85e605991cfd559cf91be0d4c',clearTableHead())
-        getCurrentSymbolsArray()
+        //create table elements
+        currentTableHeadRow.remove()
+        const newTableRow = document.createElement('tr')
+        const y = currentTableHead.appendChild(newTableRow)
+        //create table header info
+        fetch(`https://financialmodelingprep.com/api/v3/cash-flow-statement/AAPL?limit=120&apikey=dfc166b85e605991cfd559cf91be0d4c`)
+        .then(response => response.json())
+        .then(data => {
+            dataAtZeroHead= data[0]
+            let inc=0
+            for (const [key] of Object.entries(dataAtZeroHead)) {
+                if (inc < 50) {
+                    inc++;
+                    let newTableHeadContent = document.createElement('th')
+                    newTableHeadContent.innerHTML = `${key}`;
+                    y.appendChild(newTableHeadContent)
+                }
+            }})
+            //save ticker symbols into new array so we can delete old data
+            const symbols = [...document.getElementsByClassName('s')]
+            const x = symbols.map(function(item){
+                const y = item.textContent
+                return y
+                })
+            console.log(x)
             tableBody.remove()
             const newTableBody = document.createElement('tbody')
             table.appendChild(newTableBody)
@@ -267,6 +294,7 @@ const inputDos = document.getElementById('search2')
 searchUno.addEventListener('submit', (e) => {
     e.preventDefault()
     x = inputUno.value
+    console.log(x)
     fetch(`https://financialmodelingprep.com/api/v3/key-metrics-ttm/${x.toUpperCase()}?limit=40&apikey=dfc166b85e605991cfd559cf91be0d4c`)
                     .then(response => response.json())
                     .then(data => {
@@ -276,25 +304,27 @@ searchUno.addEventListener('submit', (e) => {
                         for (const [key, value] of Object.entries(dataAtZero)) {
                             let ele = document.createElement('p')
                             ele.setAttribute('class', 'key-metrics-1')
-                            if (  i < 60) {
+                            if (value > 0 &&  i < 3) {
                                 i++;
-                                ele.innerHTML = `${key} : <span class='value1'>${value}</span>`;
+                                ele.innerHTML = `${key} : ${value}`;
                                 boxUno.appendChild(ele)
+                                console.log(ele)
                             } 
-                            // else if ( value === null) {
-                            //     console.log('hello')
-                            // }
+                            else if ( value === null) {
+                                console.log('hello')
+                            }
                         }
                     })
                 
             .catch((error) => {
                 console.log(error);
             })
-    searchUno.reset()
+    form.reset()
 })
 searchDos.addEventListener('submit', (e) => {
     e.preventDefault()
-    x = inputDos.value
+    x = inputUno.value
+    console.log(x)
     fetch(`https://financialmodelingprep.com/api/v3/key-metrics-ttm/${x.toUpperCase()}?limit=40&apikey=dfc166b85e605991cfd559cf91be0d4c`)
                     .then(response => response.json())
                     .then(data => {
@@ -304,58 +334,35 @@ searchDos.addEventListener('submit', (e) => {
                         for (const [key, value] of Object.entries(dataAtZero)) {
                             let ele = document.createElement('p')
                             ele.setAttribute('class', 'key-metrics-2')
-                            if (  i < 60) {
+                            if (value > 0 &&  i < 3) {
                                 i++;
-                                ele.innerHTML = `${key} : <span class='value2'>${value}</span>`;
+                                ele.innerHTML = `${key} : ${value}`;
                                 boxDos.appendChild(ele)
+                                console.log(ele)
                             } 
-                            // else if ( value === null) {
-                            //     console.log('hello')
-                            // }
+                            else if ( value === null) {
+                                console.log('hello')
+                            }
                         }
                     })
                 
             .catch((error) => {
                 console.log(error);
             })
-    searchDos.reset()
+    form.reset()
 })
-//because i created the keyvalues in the golbal scope it wont pick up the newly entered elements
+
 const compareBtn = document.getElementById('compare')
 
-
-
-
 compareBtn.addEventListener('submit', (e) => {
-            e.preventDefault()
-            const keyvaluesUno = [...document.getElementsByClassName('value1')]
-            const unoNumbers = keyvaluesUno.map(function(item) {
-                return item.innerHTML
-            })
-            const keyvaluesDos = [...document.getElementsByClassName('value2')]
-            const dosNumbers = keyvaluesDos.map(function(item) {
-                return item.innerHTML
-            })
-            console.log(unoNumbers.length)
-            console.log(dosNumbers.length)
-            for (let i=0; i < unoNumbers.length; i++) {
-            if (unoNumbers[i] > dosNumbers[i]) {
-                const keyMetricsUno = [...document.getElementsByClassName('key-metrics-1')]
-                keyMetricsUno[i].style.color = 'green'
-                const keyMetricsDos = [...document.getElementsByClassName('key-metrics-2')]
-                keyMetricsDos[i].style.color = 'red'
-            }
-            else if (unoNumbers[i] < dosNumbers[i]) {
-                const keyMetricsDos = [...document.getElementsByClassName('key-metrics-2')]
-                keyMetricsDos[i].style.color = 'green'
-                const keyMetricsUno = [...document.getElementsByClassName('key-metrics-1')]
-                keyMetricsUno[i].style.color = 'red'
-            }
-
-            else if (unoNumbers[i] || dosNumbers[i] == 'null')
-                console.log('bye')
-        }
+    e.preventDefault()
+    const keyMetricsDos = [...document.getElementsByClassName('key-metrics-2')]
+    const keyMetricsUno = [...document.getElementsByClassName('key-metrics-1')]
+    const uno = keyMetricsUno.map(function(item) {
+        return item.textContent
     })
+    console.log(uno)
+})
     
 
 
@@ -366,4 +373,3 @@ compareBtn.addEventListener('submit', (e) => {
     // date: "2021-10-26"
     // dcf: 294.0866299519437
     // symbol: "BABA"
-    //div.innerHTML = " "

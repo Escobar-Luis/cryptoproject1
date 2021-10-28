@@ -9,17 +9,13 @@
     margin: 10px;
     border: 3px solid black;
     background-color: burlywood;
+
 }
 
 table {
     width: 100%;
 }
-#table-head{
-    background-color: #fff;
-}
-#stockSearch {
-    text-align: center;
-}
+
 th {
     text-align: left;
 }
@@ -40,24 +36,3 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: #ddd;
 }
-
-#stocks {
-    display: flex;
-    justify-content: space-around;
-}
-
-
-
-#stock1 {
-    text-align: center;
-    width: 300px;
-    margin: 30px;
-    background-color: black;
-}
-#stock2 {
-    text-align: center;
-    width: 300px;
-    margin: 30px;
-    background-color: black;
-}
-
