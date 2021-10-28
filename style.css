@@ -1,14 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 80%;;
+}
+
 .navbarContainer {
     display: flex;
     justify-content: space-around;
+
 }
 
 .statementBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    width: 300px;
-    margin: 10px;
-    border: 3px solid black;
+    text-shadow: .1rem .1rem .25rem rgba(0, 0, 0, 0.534);
+    width: 30.0rem;
+    margin: 1.0rem;
+    color: #222;
+    border: .3rem solid black;
     background-color: burlywood;
+    border-radius: 1rem;
+    box-shadow: .25rem .25rem .75rem black;
 }
 
 table {
@@ -16,6 +33,7 @@ table {
 }
 #table-head{
     background-color: #fff;
+
 }
 #stockSearch {
     text-align: center;
@@ -25,12 +43,12 @@ th {
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: .1rem solid black;
     border-collapse: collapse;
 }
 
 th, td {
-    padding: 10px;
+    padding: 1.0rem;
 }
 
 tr:nth-child(even) {
@@ -46,18 +64,24 @@ tr:nth-child(odd) {
     justify-content: space-around;
 }
 
+.key-metrics-1 {
+    color: white;
+}
+.key-metrics-2 {
+    color: white;
+}
 
 
 #stock1 {
     text-align: center;
-    width: 300px;
-    margin: 30px;
+    width: 30.0rem;
+    margin: 3.0rem;
     background-color: black;
 }
 #stock2 {
     text-align: center;
-    width: 300px;
-    margin: 30px;
+    width: 30.0rem;
+    margin: 3.0rem;
     background-color: black;
 }
 
