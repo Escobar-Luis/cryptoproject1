@@ -27,9 +27,9 @@
 </div>
   
       <a class="navbar-brand text-light">stock Dashboard</a>
-      <form hidden id="stockSearch">
-        <input id="search" type="search" placeholder="Type any stock name" aria-label="Search">
-        <button id ="btn" type="submit">Let's make this money</button>
+      <form  id="stockSearch">
+        <input id="search" type="search" placeholder="Ticker Symbol" aria-label="Search">
+        <button id ="btn" type="submit">Get DCF</button>
       </form>
   </nav>
   
@@ -51,24 +51,23 @@
   <div id='stocks'>
     <div id='c'>
       <form id="compare">
-        <button id ="compareBtn" type="submit">Compare</button>
+        <button id ="compareBtn" type="submit">Which Is Better?</button>
       </form>
     </div>
     <!--create a div to hold p elements in,seperate search form from div cointainer, clear-->
+    <form id="stock1Search">
+      <input id="search1" type="search" placeholder="Ticker Symbol" aria-label="Search">
+      <button id ="btn" type="submit">Get Key Metrics</button>
+    </form>
     <div id='stock1'>
-      <form id="stock1Search">
-        <input id="search1" type="search" placeholder="Type any stock name" aria-label="Search">
-        <button id ="btn" type="submit">Let's make this money</button>
-      </form>
     </div>
     
+    <form id="stock2Search">
+      <input id="search2" type="search" placeholder="Ticker Symbol" aria-label="Search">
+      <button id ="btn" type="submit">Get Key Metrics</button>
+    </form>
     <div id='stock2'>
-      <form id="stock2Search">
-        <input id="search2" type="search" placeholder="Type any stock name" aria-label="Search">
-        <button id ="btn" type="submit">Let's make this money</button>
-      </form>
-      <h1></h1>
-      </div>
+    </div>
   </div>
   <script src="index.js"></script>
 </body>

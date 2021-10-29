@@ -7,7 +7,20 @@ const boxDos = document.getElementById('stock2')
 
 
 const table = document.getElementById('table')
-const arr = ['AAPL', 'GOOG', 'AMZN', 'BABA', 'FB']
+let arr = ['AAPL', 'GOOG', 'AMZN', 'BABA', 'FB']
+
+const mainStockSearch = document.getElementById('stockSearch')
+function updateArr (){
+    const inputValue = document.getElementById('search').value
+    x = arr.push(inputValue)
+    return x
+    
+    
+}
+
+mainStockSearch.addEventListener('submit', () => {
+    updateArr()
+})
 
 function returnTickerData () {
     arr.forEach((ticker) => {
@@ -124,6 +137,7 @@ function createTableHead (url, emptyTableHead) {
 }
 
 balanceBtn.addEventListener('click', () => balanceStatementTableData())
+
     function balanceStatementTableData () {
         createTableHead('https://financialmodelingprep.com/api/v3/income-statement/BABA?apikey=dfc166b85e605991cfd559cf91be0d4c',clearTableHead())
         getCurrentSymbolsArray()
@@ -266,34 +280,46 @@ const inputDos = document.getElementById('search2')
 
 searchUno.addEventListener('submit', (e) => {
     e.preventDefault()
+    removeOld1()
     x = inputUno.value
     fetch(`https://financialmodelingprep.com/api/v3/key-metrics-ttm/${x.toUpperCase()}?limit=40&apikey=dfc166b85e605991cfd559cf91be0d4c`)
-                    .then(response => response.json())
-                    .then(data => {
-                        //accessing the first object with all the data
-                        const dataAtZero = data[0]
-                        let i = 0
-                        for (const [key, value] of Object.entries(dataAtZero)) {
-                            let ele = document.createElement('p')
-                            ele.setAttribute('class', 'key-metrics-1')
-                            if (  i < 60) {
-                                i++;
-                                ele.innerHTML = `${key} : <span class='value1'>${value}</span>`;
-                                boxUno.appendChild(ele)
-                            } 
-                            // else if ( value === null) {
-                            //     console.log('hello')
-                            // }
-                        }
-                    })
-                
+    .then(response => response.json())
+    .then(data => {
+        //accessing the first object with all the data
+        // removeEle()
+        const dataAtZero = data[0]
+        let i = 0
+        for (const [key, value] of Object.entries(dataAtZero)) {
+            let ele = document.createElement('p')
+            ele.setAttribute('class', 'key-metrics-1')
+            if (  i < 60) {
+                i++;
+                ele.innerHTML = `${key} : <span class='value1'>${parseFloat(value)}</span>`;
+                boxUno.appendChild(ele)
+            } 
+            // else if ( value === null) {
+                //     console.log('hello')
+                // }
+            }
+        })
+        
             .catch((error) => {
                 console.log(error);
             })
     searchUno.reset()
 })
+
+function removeOld2 () {
+    const stocksUnoDiv= document.getElementById(`stock2`)
+    return stocksUnoDiv.innerHTML = ""
+}
+function removeOld1 () {
+    const stocksUnoDiv= document.getElementById(`stock1`)
+    return stocksUnoDiv.innerHTML = ""
+}
 searchDos.addEventListener('submit', (e) => {
     e.preventDefault()
+    removeOld2()
     x = inputDos.value
     fetch(`https://financialmodelingprep.com/api/v3/key-metrics-ttm/${x.toUpperCase()}?limit=40&apikey=dfc166b85e605991cfd559cf91be0d4c`)
                     .then(response => response.json())
@@ -306,7 +332,7 @@ searchDos.addEventListener('submit', (e) => {
                             ele.setAttribute('class', 'key-metrics-2')
                             if (  i < 60) {
                                 i++;
-                                ele.innerHTML = `${key} : <span class='value2'>${value}</span>`;
+                                ele.innerHTML = `${key} : <span class='value2'>${parseFloat(value)}</span>`;
                                 boxDos.appendChild(ele)
                             } 
                             // else if ( value === null) {
@@ -330,6 +356,7 @@ compareBtn.addEventListener('submit', (e) => {
             e.preventDefault()
             const keyvaluesUno = [...document.getElementsByClassName('value1')]
             const unoNumbers = keyvaluesUno.map(function(item) {
+                console.log(item.textContent)
                 return item.innerHTML
             })
             const keyvaluesDos = [...document.getElementsByClassName('value2')]
@@ -352,7 +379,7 @@ compareBtn.addEventListener('submit', (e) => {
                 keyMetricsUno[i].style.color = 'red'
             }
 
-            else if (unoNumbers[i] || dosNumbers[i] == 'null')
+            else if (unoNumbers[i] || dosNumbers[i] === 'NaN')
                 console.log('bye')
         }
     })
